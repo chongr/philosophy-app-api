@@ -3,14 +3,17 @@ package com.example.helloworld;
 import com.example.helloworld.auth.ExampleAuthenticator;
 import com.example.helloworld.auth.ExampleAuthorizer;
 import com.example.helloworld.cli.RenderCommand;
+import com.example.helloworld.core.PathToPhilosophy;
 import com.example.helloworld.core.Person;
 import com.example.helloworld.core.Template;
 import com.example.helloworld.core.User;
+import com.example.helloworld.db.PathToPhilosophyDAO;
 import com.example.helloworld.db.PersonDAO;
 import com.example.helloworld.filter.DateRequiredFeature;
 import com.example.helloworld.health.TemplateHealthCheck;
 import com.example.helloworld.resources.FilteredResource;
 import com.example.helloworld.resources.HelloWorldResource;
+import com.example.helloworld.resources.PathToPhilosophyResource;
 import com.example.helloworld.resources.PeopleResource;
 import com.example.helloworld.resources.PersonResource;
 import com.example.helloworld.resources.ProtectedResource;
@@ -31,6 +34,7 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.dropwizard.views.ViewBundle;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
+import org.hibernate.SessionFactory;
 
 import java.util.Map;
 
@@ -40,7 +44,7 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
     }
 
     private final HibernateBundle<HelloWorldConfiguration> hibernateBundle =
-        new HibernateBundle<HelloWorldConfiguration>(Person.class) {
+        new HibernateBundle<HelloWorldConfiguration>(Person.class, PathToPhilosophy.class) {
             @Override
             public PooledDataSourceFactory getDataSourceFactory(HelloWorldConfiguration configuration) {
                 return configuration.getDataSourceFactory();
@@ -81,7 +85,9 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
 
     @Override
     public void run(HelloWorldConfiguration configuration, Environment environment) {
-        final PersonDAO dao = new PersonDAO(hibernateBundle.getSessionFactory());
+        SessionFactory session = hibernateBundle.getSessionFactory();
+        final PersonDAO dao = new PersonDAO(session);
+        final PathToPhilosophyDAO pathToPhilosophyDAO = new PathToPhilosophyDAO(session);
         final Template template = configuration.buildTemplate();
 
         environment.healthChecks().register("template", new TemplateHealthCheck(template));
@@ -99,6 +105,7 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
         environment.jersey().register(new ProtectedResource());
         environment.jersey().register(new PeopleResource(dao));
         environment.jersey().register(new PersonResource(dao));
+        environment.jersey().register(new PathToPhilosophyResource(pathToPhilosophyDAO));
         environment.jersey().register(new FilteredResource());
     }
 }

@@ -20,5 +20,16 @@
     <changeSet id="2" author="ryan">
         <renameColumn tableName="people" oldColumnName="fullName" newColumnName="fullname"></renameColumn>
         <renameColumn tableName="people" oldColumnName="jobTitle" newColumnName="jobtitle"></renameColumn>
+    </changeSet>      
+    <changeSet id="3" author="ryan">      
+        <createTable tableName="path_to_philosophy">
+            <column name="page_topic" type="varchar(255)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="reaches_philosophy" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="path" type="text"/>
+        </createTable>
     </changeSet>
 </databaseChangeLog>

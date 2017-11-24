@@ -5,4 +5,4 @@ server:
 	heroku local
 
 run:
-	mvn package && heroku local
+	mvn package -Dmaven.test.skip=true && heroku local
