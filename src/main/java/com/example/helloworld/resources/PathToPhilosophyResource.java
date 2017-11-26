@@ -32,11 +32,11 @@ public class PathToPhilosophyResource {
 
     @GET
     @UnitOfWork
-    public PathToPhilosophy getPhilosophyPath(@PathParam("wikiPageTopic") String wikiPageTopic) throws IOException {
+    public Optional<PathToPhilosophy> getPhilosophyPath(@PathParam("wikiPageTopic") String wikiPageTopic) throws IOException {
         Optional<PathToPhilosophy> pathInDb = pathToPhilosophyDAO.findByPageTopic(wikiPageTopic);
         if (!pathInDb.isPresent()) {
             return pathToPhilosophyDAO.findAndSavePath(wikiPageTopic);
         }
-        return pathInDb.get();
+        return Optional.ofNullable(pathInDb.get());
     }
 }
