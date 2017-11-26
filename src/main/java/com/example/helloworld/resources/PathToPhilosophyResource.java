@@ -21,7 +21,7 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Path("/wiki-page/{wikiPageTopic}/path-to-philosophy")
+@Path("/path-to-philosophy/{wikiPageTopic}")
 @Produces(MediaType.APPLICATION_JSON)
 public class PathToPhilosophyResource {
     private final PathToPhilosophyDAO pathToPhilosophyDAO;

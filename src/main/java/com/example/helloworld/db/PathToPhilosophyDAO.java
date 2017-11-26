@@ -26,6 +26,7 @@ public class PathToPhilosophyDAO extends AbstractDAO<PathToPhilosophy> {
     public PathToPhilosophy findAndSavePath(String pageTopic) throws IOException {
         String wikiURL = String.format("%s/wiki/%s", PhilosophyPathFinder.WIKIPEDIA_URL, pageTopic);
         ArrayList<PathToPhilosophy> pathsCalculated = PhilosophyPathFinder.getPathToPhilosophy(wikiURL);
+        // TODO: SQL queries can be reduced in this bulk create or update
         for (PathToPhilosophy newPath : pathsCalculated) {
             persist(newPath);
         }
