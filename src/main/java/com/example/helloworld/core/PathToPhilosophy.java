@@ -1,5 +1,7 @@
 package com.example.helloworld.core;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +18,9 @@ public class PathToPhilosophy {
     @Column(name = "reaches_philosophy", nullable = false)
     private Boolean reachesPhilosophy;
 
+    @Column(name = "num_steps_to_philosophy", nullable = false)
+    private int numStepsToPhilosophy;
+
     @Column(name = "path", nullable = true)
     private String path;
 
@@ -26,6 +31,8 @@ public class PathToPhilosophy {
         this.pageTopic = pageTopic;
         this.reachesPhilosophy = reachesPhilosophy;
         this.path = path;
+        List<String> pathSteps = Arrays.asList(path.split("\\s*,\\s*"));
+        this.numStepsToPhilosophy = pathSteps.size();
     }
 
     public String getPageTopic() {
@@ -50,6 +57,14 @@ public class PathToPhilosophy {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public int getNumStepsToPhilosophy() {
+        return numStepsToPhilosophy;
+    }
+
+    public void setNumStepsToPhilosophy(int numStepsToPhilosophy) {
+        this.numStepsToPhilosophy = numStepsToPhilosophy;
     }
 
     @Override

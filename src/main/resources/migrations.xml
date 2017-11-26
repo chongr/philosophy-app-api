@@ -32,4 +32,9 @@
             <column name="path" type="text"/>
         </createTable>
     </changeSet>
+    <changeSet id="4" author="ryan">
+        <addColumn tableName="path_to_philosophy">
+            <column name="num_steps_to_philosophy" type="int"></column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

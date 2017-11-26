@@ -33,10 +33,13 @@ import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.dropwizard.views.ViewBundle;
+import org.eclipse.jetty.servlets.CrossOriginFilter;
+import javax.servlet.FilterRegistration;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import org.hibernate.SessionFactory;
-
+import java.util.EnumSet;
 import java.util.Map;
+import javax.servlet.DispatcherType;
 
 public class HelloWorldApplication extends Application<HelloWorldConfiguration> {
     public static void main(String[] args) throws Exception {
@@ -89,6 +92,17 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
         final PersonDAO dao = new PersonDAO(session);
         final PathToPhilosophyDAO pathToPhilosophyDAO = new PathToPhilosophyDAO(session);
         final Template template = configuration.buildTemplate();
+
+        // Enable CORS headers
+        final FilterRegistration.Dynamic cors = environment.servlets().addFilter("CORS", CrossOriginFilter.class);
+
+        // Configure CORS parameters
+        cors.setInitParameter("allowedOrigins", "*");
+        cors.setInitParameter("allowedHeaders", "X-Requested-With,Content-Type,Accept,Origin");
+        cors.setInitParameter("allowedMethods", "OPTIONS,GET,PUT,POST,DELETE,HEAD");
+
+        // Add URL mapping
+        cors.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
 
         environment.healthChecks().register("template", new TemplateHealthCheck(template));
         environment.admin().addTask(new EchoTask());
