@@ -154,7 +154,6 @@ public class PhilosophyPathFinder {
             nextLink = getNextURL(nextLink);
             if (nextLink == null || linksSeen.contains(nextLink)) {
                 getsToPhilosophy = false;
-                linksBeenToOrdered.add(nextLink);
                 break;
             }
         }

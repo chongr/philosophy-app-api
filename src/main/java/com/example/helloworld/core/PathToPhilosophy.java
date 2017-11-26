@@ -31,8 +31,10 @@ public class PathToPhilosophy {
         this.pageTopic = pageTopic;
         this.reachesPhilosophy = reachesPhilosophy;
         this.path = path;
-        List<String> pathSteps = Arrays.asList(path.split("\\s*,\\s*"));
-        this.numStepsToPhilosophy = pathSteps.size();
+        if (this.path != null) {
+            List<String> pathSteps = Arrays.asList(path.split("\\s*,\\s*"));
+            this.numStepsToPhilosophy = pathSteps.size();
+        }
     }
 
     public String getPageTopic() {

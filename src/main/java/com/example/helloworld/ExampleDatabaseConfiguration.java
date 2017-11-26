@@ -23,7 +23,7 @@ public class ExampleDatabaseConfiguration implements DatabaseConfiguration {
     private static DatabaseConfiguration databaseConfiguration;
 
     public static DatabaseConfiguration create(String databaseUrl) {
-        LOGGER.info("Creating DB for " + databaseUrl);
+        LOGGER.debug("Creating DB for " + databaseUrl);
         if (databaseUrl == null) {
             throw new IllegalArgumentException(
                     "The DATABASE_URL environment variable must be set before running the app "
