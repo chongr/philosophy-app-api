@@ -1,11 +1,11 @@
-package com.example.helloworld.find_path;
+package com.project.philosophy.find_path;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.example.helloworld.core.PathToPhilosophy;
+import com.project.philosophy.core.PathToPhilosophy;
 import com.google.common.base.Joiner;
 
 import org.slf4j.Logger;

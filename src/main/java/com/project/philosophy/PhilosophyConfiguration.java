@@ -1,4 +1,4 @@
-package com.example.helloworld;
+package com.project.philosophy;
 
 import com.codahale.metrics.MetricRegistry;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -21,8 +21,8 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Optional;
 
-public class HelloWorldConfiguration extends Configuration {
-    private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldConfiguration.class);
+public class PhilosophyConfiguration extends Configuration {
+    private static final Logger LOGGER = LoggerFactory.getLogger(PhilosophyConfiguration.class);
     @NotEmpty
     private String template;
 

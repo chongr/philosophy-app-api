@@ -1,12 +1,10 @@
 
-package com.example.helloworld;
+package com.project.philosophy;
 
 import io.dropwizard.Configuration;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.db.DatabaseConfiguration;
 import io.dropwizard.db.PooledDataSourceFactory;
-import io.dropwizard.hibernate.HibernateBundle;
-import io.dropwizard.setup.Environment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

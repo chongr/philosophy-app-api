@@ -1,8 +1,8 @@
-package com.example.helloworld;
+package com.project.philosophy;
 
-import com.example.helloworld.core.PathToPhilosophy;
-import com.example.helloworld.db.PathToPhilosophyDAO;
-import com.example.helloworld.resources.PathToPhilosophyResource;
+import com.project.philosophy.core.PathToPhilosophy;
+import com.project.philosophy.db.PathToPhilosophyDAO;
+import com.project.philosophy.resources.PathToPhilosophyResource;
 import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.configuration.EnvironmentVariableSubstitutor;
@@ -21,15 +21,15 @@ import java.util.EnumSet;
 import java.util.Map;
 import javax.servlet.DispatcherType;
 
-public class HelloWorldApplication extends Application<HelloWorldConfiguration> {
+public class PhilosophyApplication extends Application<PhilosophyConfiguration> {
     public static void main(String[] args) throws Exception {
-        new HelloWorldApplication().run(args);
+        new PhilosophyApplication().run(args);
     }
 
-    private final HibernateBundle<HelloWorldConfiguration> hibernateBundle =
-        new HibernateBundle<HelloWorldConfiguration>(PathToPhilosophy.class) {
+    private final HibernateBundle<PhilosophyConfiguration> hibernateBundle =
+        new HibernateBundle<PhilosophyConfiguration>(PathToPhilosophy.class) {
             @Override
-            public PooledDataSourceFactory getDataSourceFactory(HelloWorldConfiguration configuration) {
+            public PooledDataSourceFactory getDataSourceFactory(PhilosophyConfiguration configuration) {
                 return configuration.getDataSourceFactory();
             }
         };
@@ -40,7 +40,7 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
     }
 
     @Override
-    public void initialize(Bootstrap<HelloWorldConfiguration> bootstrap) {
+    public void initialize(Bootstrap<PhilosophyConfiguration> bootstrap) {
         // Enable variable substitution with environment variables
         bootstrap.setConfigurationSourceProvider(
                 new SubstitutingSourceProvider(
@@ -50,23 +50,23 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
         );
 
         bootstrap.addBundle(new AssetsBundle());
-        bootstrap.addBundle(new MigrationsBundle<HelloWorldConfiguration>() {
+        bootstrap.addBundle(new MigrationsBundle<PhilosophyConfiguration>() {
             @Override
-            public PooledDataSourceFactory getDataSourceFactory(HelloWorldConfiguration configuration) {
+            public PooledDataSourceFactory getDataSourceFactory(PhilosophyConfiguration configuration) {
                 return configuration.getDataSourceFactory();
             }
         });
         bootstrap.addBundle(hibernateBundle);
-        bootstrap.addBundle(new ViewBundle<HelloWorldConfiguration>() {
+        bootstrap.addBundle(new ViewBundle<PhilosophyConfiguration>() {
             @Override
-            public Map<String, Map<String, String>> getViewConfiguration(HelloWorldConfiguration configuration) {
+            public Map<String, Map<String, String>> getViewConfiguration(PhilosophyConfiguration configuration) {
                 return configuration.getViewRendererConfiguration();
             }
         });
     }
 
     @Override
-    public void run(HelloWorldConfiguration configuration, Environment environment) {
+    public void run(PhilosophyConfiguration configuration, Environment environment) {
         SessionFactory session = hibernateBundle.getSessionFactory();
         final PathToPhilosophyDAO pathToPhilosophyDAO = new PathToPhilosophyDAO(session);
 

@@ -1,4 +1,4 @@
-package com.example.helloworld.core;
+package com.project.philosophy.core;
 
 import java.util.Arrays;
 import java.util.List;

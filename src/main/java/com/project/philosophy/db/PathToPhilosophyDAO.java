@@ -1,7 +1,7 @@
-package com.example.helloworld.db;
+package com.project.philosophy.db;
 
-import com.example.helloworld.core.PathToPhilosophy;
-import com.example.helloworld.find_path.PhilosophyPathFinder;
+import com.project.philosophy.core.PathToPhilosophy;
+import com.project.philosophy.find_path.PhilosophyPathFinder;
 
 import io.dropwizard.hibernate.AbstractDAO;
 

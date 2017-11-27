@@ -1,7 +1,7 @@
-package com.example.helloworld.resources;
+package com.project.philosophy.resources;
 
-import com.example.helloworld.core.PathToPhilosophy;
-import com.example.helloworld.db.PathToPhilosophyDAO;
+import com.project.philosophy.core.PathToPhilosophy;
+import com.project.philosophy.db.PathToPhilosophyDAO;
 import io.dropwizard.hibernate.UnitOfWork;
 
 import javax.ws.rs.GET;
