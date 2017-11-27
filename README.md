@@ -1,6 +1,6 @@
 # Overview
 
-Philosophy App Api
+Philosophy App Api, hosted on [heroku](http://philosophy-app-api.herokuapp.com/)
 
 # Running The Application
 
