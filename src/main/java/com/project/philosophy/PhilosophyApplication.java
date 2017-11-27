@@ -74,7 +74,7 @@ public class PhilosophyApplication extends Application<PhilosophyConfiguration> 
         final FilterRegistration.Dynamic cors = environment.servlets().addFilter("CORS", CrossOriginFilter.class);
 
         // Configure CORS parameters
-        cors.setInitParameter("allowedOrigins", "*");
+        cors.setInitParameter("allowedOrigins", System.getenv("CORS_ALLOWED_ORIGINS"));
         cors.setInitParameter("allowedHeaders", "X-Requested-With,Content-Type,Accept,Origin");
         cors.setInitParameter("allowedMethods", "OPTIONS,GET,PUT,POST,DELETE,HEAD");
 
