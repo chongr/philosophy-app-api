@@ -53,8 +53,11 @@ public class PathToPhilosophy {
         this.reachesPhilosophy = reachesPhilosophy;
     }
 
-    public String getPath() {
-        return path;
+    public List<String> getPath() {
+        if (this.path != null) {
+            return Arrays.asList(path.split("\\s*,\\s*"));
+        }
+        return null;
     }
 
     public void setPath(String path) {

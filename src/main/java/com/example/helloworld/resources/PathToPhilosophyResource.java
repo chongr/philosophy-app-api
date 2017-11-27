@@ -4,22 +4,14 @@ import com.example.helloworld.core.PathToPhilosophy;
 import com.example.helloworld.db.PathToPhilosophyDAO;
 import io.dropwizard.hibernate.UnitOfWork;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javax.ws.rs.GET;
-import javax.ws.rs.NotFoundException;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Path("/path-to-philosophy/{wikiPageTopic}")
 @Produces(MediaType.APPLICATION_JSON)
